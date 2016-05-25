@@ -333,8 +333,8 @@ public struct TranslationManager {
     
     // Searches the translation file for a key matching the provided language code
     public func findTranslationMatchingLanguage(language: String?, inJSON json: [String : AnyObject]) -> [String : AnyObject]? {
-        if let language = language  {
-            for key in (json as NSDictionary).allKeys {
+        if let language = language where language.characters.count >= 2 {
+            for key in (json as NSDictionary).allKeys where (key as! NSString).count >= 2{
                 if (key as! NSString).substringToIndex(2) == (language as NSString).substringToIndex(2) {
                     return json[key as! String] as? [String : AnyObject]
                 }
